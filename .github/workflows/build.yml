@@ -1,0 +1,102 @@
+name: build
+
+on:
+  push:
+    tags:
+    - 'v*' 
+
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+
+    - name: Get ClickHouse
+      run: |
+        wget https://repo.clickhouse.tech/rpm/stable/x86_64/clickhouse-client-20.5.2.7-2.noarch.rpm
+        wget https://repo.clickhouse.tech/rpm/stable/x86_64/clickhouse-common-static-20.5.2.7-2.x86_64.rpm
+        wget https://repo.clickhouse.tech/rpm/stable/x86_64/clickhouse-server-20.5.2.7-2.noarch.rpm
+
+    - name: Upload ClickHouse Client
+      id: upload-clickhouse-client
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./clickhouse-client-20.5.2.7-2.noarch.rpm
+        asset_name: clickhouse-client-20.5.2.7-2.noarch.rpm
+        asset_content_type: application/zip
+
+    - name: Upload ClickHouse Common
+      id: upload-clickhouse-common
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./clickhouse-common-static-20.5.2.7-2.x86_64.rpm
+        asset_name: clickhouse-common-static-20.5.2.7-2.x86_64.rpm
+        asset_content_type: application/zip
+
+    - name: Upload ClickHouse Server
+      id: upload-clickhouse-server
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./clickhouse-server-20.5.2.7-2.noarch.rpm
+        asset_name: clickhouse-server-20.5.2.7-2.noarch.rpm
+        asset_content_type: application/zip
+
+    - name: Get PostgreSQL
+      run: |
+        wget https://yum.postgresql.org/9.5/redhat/rhel-8-x86_64/postgresql95-9.5.24-1PGDG.rhel8.x86_64.rpm
+        wget https://yum.postgresql.org/9.5/redhat/rhel-8-x86_64/postgresql95-libs-9.5.24-1PGDG.rhel8.x86_64.rpm
+        wget https://yum.postgresql.org/9.5/redhat/rhel-8-x86_64/postgresql95-server-9.5.24-1PGDG.rhel8.x86_64.rpm
+
+    - name: Upload PostgreSQL
+      id: upload-postgresql
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./postgresql95-9.5.24-1PGDG.rhel8.x86_64.rpm
+        asset_name: postgresql95-9.5.24-1PGDG.rhel8.x86_64.rpm
+        asset_content_type: application/zip
+
+    - name: Upload PostgreSQL Libs
+      id: upload-postgresql-libs
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./postgresql95-libs-9.5.24-1PGDG.rhel8.x86_64.rpm
+        asset_name: postgresql95-libs-9.5.24-1PGDG.rhel8.x86_64.rpm
+        asset_content_type: application/zip
+
+    - name: Upload PostgreSQL Server
+      id: upload-postgresql-server
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./postgresql95-server-9.5.24-1PGDG.rhel8.x86_64.rpm
+        asset_name: postgresql95-server-9.5.24-1PGDG.rhel8.x86_64.rpm
+        asset_content_type: application/zip
