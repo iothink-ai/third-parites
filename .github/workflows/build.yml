@@ -30,7 +30,6 @@ jobs:
         wget https://repo.clickhouse.tech/rpm/stable/x86_64/clickhouse-server-20.5.2.7-2.noarch.rpm
 
     - name: Upload ClickHouse Client
-      id: upload-clickhouse-client
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -41,7 +40,6 @@ jobs:
         asset_content_type: application/zip
 
     - name: Upload ClickHouse Common
-      id: upload-clickhouse-common
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -52,7 +50,6 @@ jobs:
         asset_content_type: application/zip
 
     - name: Upload ClickHouse Server
-      id: upload-clickhouse-server
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -67,7 +64,6 @@ jobs:
         wget http://www.haproxy.com/download/haproxy/haproxy/centos-8/x86_64/pool/haproxy-2.3.2-23.0.rhel-8.x86_64.rpm
 
     - name: Upload HAProxy
-      id: upload-haproxy
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -82,7 +78,6 @@ jobs:
         wget https://nginx.org/packages/centos/8/x86_64/RPMS/nginx-1.18.0-2.el8.ngx.x86_64.rpm
 
     - name: Upload NGINX
-      id: upload-nginx
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -97,7 +92,6 @@ jobs:
         wget https://adoptopenjdk.jfrog.io/adoptopenjdk/rpm/centos/8/x86_64/Packages/adoptopenjdk-11-hotspot-jre-11.0.9+11.2-3.x86_64.rpm
 
     - name: Upload OpenJDK
-      id: upload-openjdk
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -114,7 +108,6 @@ jobs:
         wget https://yum.postgresql.org/9.5/redhat/rhel-8-x86_64/postgresql95-server-9.5.24-1PGDG.rhel8.x86_64.rpm
 
     - name: Upload PostgreSQL
-      id: upload-postgresql
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -125,7 +118,6 @@ jobs:
         asset_content_type: application/zip
 
     - name: Upload PostgreSQL Libs
-      id: upload-postgresql-libs
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -136,7 +128,6 @@ jobs:
         asset_content_type: application/zip
 
     - name: Upload PostgreSQL Server
-      id: upload-postgresql-server
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -144,4 +135,18 @@ jobs:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./postgresql95-server-9.5.24-1PGDG.rhel8.x86_64.rpm
         asset_name: postgresql95-server-9.5.24-1PGDG.rhel8.x86_64.rpm
+        asset_content_type: application/zip
+
+    - name: Get Redis
+      run: |
+        wget http://mirror.centos.org/centos/8/AppStream/x86_64/os/Packages/redis-5.0.3-2.module_el8.2.0+318+3d7e67ea.x86_64.rpm
+
+    - name: Upload Redis
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./redis-5.0.3-2.module_el8.2.0+318+3d7e67ea.x86_64.rpm
+        asset_name: redis-5.0.3-2.module_el8.2.0+318+3d7e67ea.x86_64.rpm
         asset_content_type: application/zip
