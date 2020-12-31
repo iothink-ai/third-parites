@@ -62,6 +62,36 @@ jobs:
         asset_name: clickhouse-server-20.5.2.7-2.noarch.rpm
         asset_content_type: application/zip
 
+    - name: Get HAProxy
+      run: |
+        wget http://www.haproxy.com/download/haproxy/haproxy/centos-8/x86_64/pool/haproxy-2.3.2-23.0.rhel-8.x86_64.rpm
+
+    - name: Upload HAProxy
+      id: upload-haproxy
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./haproxy-2.3.2-23.0.rhel-8.x86_64.rpm
+        asset_name: haproxy-2.3.2-23.0.rhel-8.x86_64.rpm
+        asset_content_type: application/zip
+
+    - name: Get NGINX
+      run: |
+        wget https://nginx.org/packages/centos/8/x86_64/RPMS/nginx-1.18.0-2.el8.ngx.x86_64.rpm
+
+    - name: Upload NGINX
+      id: upload-nginx
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./nginx-1.18.0-2.el8.ngx.x86_64.rpm
+        asset_name: nginx-1.18.0-2.el8.ngx.x86_64.rpm
+        asset_content_type: application/zip
+
     - name: Get OpenJDK
       run: |
         wget https://adoptopenjdk.jfrog.io/adoptopenjdk/rpm/centos/8/x86_64/Packages/adoptopenjdk-11-hotspot-jre-11.0.9+11.2-3.x86_64.rpm
