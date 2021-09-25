@@ -164,3 +164,17 @@ jobs:
         asset_path: ./redis-5.0.3-2.module_el8.2.0+318+3d7e67ea.x86_64.rpm
         asset_name: redis-5.0.3-2.module_el8.2.0+318+3d7e67ea.x86_64.rpm
         asset_content_type: application/zip
+
+    - name: Get Suricata
+      run: |
+        wget https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/s/suricata-5.0.7-1.el8.x86_64.rpm
+
+    - name: Upload Suricata
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./suricata-5.0.7-1.el8.x86_64.rpm
+        asset_name: suricata-5.0.7-1.el8.x86_64.rpm
+        asset_content_type: application/zip
