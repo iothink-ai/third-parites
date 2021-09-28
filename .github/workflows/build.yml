@@ -75,7 +75,7 @@ jobs:
 
     - name: Get Mosquitto
       run: |
-        wget https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/m/mosquitto-1.6.10-1.el8.x86_64.rpm
+        wget https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/m/mosquitto-1.6.15-1.el8.x86_64.rpm
 
     - name: Upload Mosquitto
       uses: actions/upload-release-asset@v1
@@ -83,8 +83,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./mosquitto-1.6.10-1.el8.x86_64.rpm
-        asset_name: mosquitto-1.6.10-1.el8.x86_64.rpm
+        asset_path: ./mosquitto-1.6.15-1.el8.x86_64.rpm
+        asset_name: mosquitto-1.6.15-1.el8.x86_64.rpm
         asset_content_type: application/zip
 
     - name: Get NGINX
@@ -167,7 +167,7 @@ jobs:
 
     - name: Get Suricata
       run: |
-        wget https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/s/suricata-5.0.7-1.el8.x86_64.rpm
+        wget https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/s/suricata-4.1.10-1.el7.x86_64.rpm
 
     - name: Upload Suricata
       uses: actions/upload-release-asset@v1
@@ -175,6 +175,20 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./suricata-5.0.7-1.el8.x86_64.rpm
-        asset_name: suricata-5.0.7-1.el8.x86_64.rpm
+        asset_path: ./suricata-4.1.10-1.el7.x86_64.rpm
+        asset_name: suricata-4.1.10-1.el7.x86_64.rpm
+        asset_content_type: application/zip
+
+    - name: Get Fluent Bit
+      run: |
+        wget https://apt.fluentbit.io/centos/7/x86_64/td-agent-bit-1.7.9-1.x86_64.rpm
+
+    - name: Upload Fluent Bit
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./td-agent-bit-1.7.9-1.x86_64.rpm
+        asset_name: td-agent-bit-1.7.9-1.x86_64.rpm
         asset_content_type: application/zip
