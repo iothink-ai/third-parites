@@ -61,7 +61,7 @@ jobs:
 
     - name: Get HAProxy
       run: |
-        wget http://www.haproxy.com/download/haproxy/haproxy/centos-8/x86_64/pool/haproxy-2.3.2-23.0.rhel-8.x86_64.rpm
+        wget https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/h/haproxy18-1.8.27-1.el7.x86_64.rpm
 
     - name: Upload HAProxy
       uses: actions/upload-release-asset@v1
@@ -69,13 +69,13 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./haproxy-2.3.2-23.0.rhel-8.x86_64.rpm
-        asset_name: haproxy-2.3.2-23.0.rhel-8.x86_64.rpm
+        asset_path: ./haproxy18-1.8.27-1.el7.x86_64.rpm
+        asset_name: haproxy18-1.8.27-1.el7.x86_64.rpm
         asset_content_type: application/zip
 
     - name: Get Mosquitto
       run: |
-        wget https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/m/mosquitto-1.6.15-1.el8.x86_64.rpm
+        wget https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/m/mosquitto-1.6.10-1.el7.x86_64.rpm
 
     - name: Upload Mosquitto
       uses: actions/upload-release-asset@v1
@@ -83,13 +83,13 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./mosquitto-1.6.15-1.el8.x86_64.rpm
-        asset_name: mosquitto-1.6.15-1.el8.x86_64.rpm
+        asset_path: ./mosquitto-1.6.10-1.el7.x86_64.rpm
+        asset_name: mosquitto-1.6.10-1.el7.x86_64.rpm
         asset_content_type: application/zip
 
     - name: Get NGINX
       run: |
-        wget https://nginx.org/packages/centos/8/x86_64/RPMS/nginx-1.18.0-2.el8.ngx.x86_64.rpm
+        wget http://nginx.org/packages/mainline/centos/7/x86_64/RPMS/nginx-1.21.4-1.el7.ngx.x86_64.rpm
 
     - name: Upload NGINX
       uses: actions/upload-release-asset@v1
@@ -97,13 +97,13 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./nginx-1.18.0-2.el8.ngx.x86_64.rpm
-        asset_name: nginx-1.18.0-2.el8.ngx.x86_64.rpm
+        asset_path: ./nginx-1.21.4-1.el7.ngx.x86_64.rpm
+        asset_name: nginx-1.21.4-1.el7.ngx.x86_64.rpm
         asset_content_type: application/zip
 
     - name: Get OpenJDK
       run: |
-        wget https://adoptopenjdk.jfrog.io/adoptopenjdk/rpm/centos/8/x86_64/Packages/adoptopenjdk-11-hotspot-jre-11.0.9+11.2-3.x86_64.rpm
+        wget -O adoptopenjdk-11-hotspot-jre-11.0.9+11.2-3.x86_64.rpm 'https://adoptopenjdk.jfrog.io/ui/api/v1/download?repoKey=rpm&path=centos%2F7%2Fx86_64%2FPackages%2Fadoptopenjdk-11-hotspot-jre-11.0.9%2B11.2-3.x86_64.rpm'
 
     - name: Upload OpenJDK
       uses: actions/upload-release-asset@v1
@@ -117,9 +117,9 @@ jobs:
 
     - name: Get PostgreSQL
       run: |
-        wget https://yum.postgresql.org/9.5/redhat/rhel-8-x86_64/postgresql95-9.5.24-1PGDG.rhel8.x86_64.rpm
-        wget https://yum.postgresql.org/9.5/redhat/rhel-8-x86_64/postgresql95-libs-9.5.24-1PGDG.rhel8.x86_64.rpm
-        wget https://yum.postgresql.org/9.5/redhat/rhel-8-x86_64/postgresql95-server-9.5.24-1PGDG.rhel8.x86_64.rpm
+        wget https://download.postgresql.org/pub/repos/yum/9.5/redhat/rhel-7-x86_64/postgresql95-9.5.25-1PGDG.rhel7.x86_64.rpm
+        wget https://download.postgresql.org/pub/repos/yum/9.5/redhat/rhel-7-x86_64/postgresql95-libs-9.5.25-1PGDG.rhel7.x86_64.rpm
+        wget https://download.postgresql.org/pub/repos/yum/9.5/redhat/rhel-7-x86_64/postgresql95-server-9.5.25-1PGDG.rhel7.x86_64.rpm
 
     - name: Upload PostgreSQL
       uses: actions/upload-release-asset@v1
@@ -127,8 +127,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./postgresql95-9.5.24-1PGDG.rhel8.x86_64.rpm
-        asset_name: postgresql95-9.5.24-1PGDG.rhel8.x86_64.rpm
+        asset_path: ./postgresql95-9.5.25-1PGDG.rhel7.x86_64.rpm
+        asset_name: postgresql95-9.5.25-1PGDG.rhel7.x86_64.rpm
         asset_content_type: application/zip
 
     - name: Upload PostgreSQL Libs
@@ -137,8 +137,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./postgresql95-libs-9.5.24-1PGDG.rhel8.x86_64.rpm
-        asset_name: postgresql95-libs-9.5.24-1PGDG.rhel8.x86_64.rpm
+        asset_path: ./postgresql95-libs-9.5.25-1PGDG.rhel7.x86_64.rpm
+        asset_name: postgresql95-libs-9.5.25-1PGDG.rhel7.x86_64.rpm
         asset_content_type: application/zip
 
     - name: Upload PostgreSQL Server
@@ -147,13 +147,13 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./postgresql95-server-9.5.24-1PGDG.rhel8.x86_64.rpm
-        asset_name: postgresql95-server-9.5.24-1PGDG.rhel8.x86_64.rpm
+        asset_path: ./postgresql95-server-9.5.25-1PGDG.rhel7.x86_64.rpm
+        asset_name: postgresql95-server-9.5.25-1PGDG.rhel7.x86_64.rpm
         asset_content_type: application/zip
 
     - name: Get Redis
       run: |
-        wget http://mirror.centos.org/centos/8/AppStream/x86_64/os/Packages/redis-5.0.3-2.module_el8.2.0+318+3d7e67ea.x86_64.rpm
+        wget https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/r/redis-3.2.12-2.el7.x86_64.rpm
 
     - name: Upload Redis
       uses: actions/upload-release-asset@v1
@@ -161,8 +161,22 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./redis-5.0.3-2.module_el8.2.0+318+3d7e67ea.x86_64.rpm
-        asset_name: redis-5.0.3-2.module_el8.2.0+318+3d7e67ea.x86_64.rpm
+        asset_path: ./redis-3.2.12-2.el7.x86_64.rpm
+        asset_name: redis-3.2.12-2.el7.x86_64.rpm
+        asset_content_type: application/zip
+
+    - name: Get Docker
+      run: |
+        wget https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-20.10.9-3.el7.x86_64.rpm
+
+    - name: Upload Docker
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./docker-ce-20.10.9-3.el7.x86_64.rpm
+        asset_name: docker-ce-20.10.9-3.el7.x86_64.rpm
         asset_content_type: application/zip
 
     - name: Get Suricata
